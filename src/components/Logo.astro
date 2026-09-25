@@ -1,0 +1,31 @@
+---
+import { url } from "../lib/url";
+/**
+ * TODO: Replace PNG placeholders with vector exports (logo-master.svg,
+ * logo-golf.svg, logo-lasertag.svg) in /public/brand/ when the designer
+ * delivers them. Never recreate the logo with live text (brand guide p.2).
+ */
+interface Props {
+  variant?: "master" | "golf" | "lasertag";
+  class?: string;
+  eager?: boolean;
+}
+const { variant = "master", class: className = "", eager = false } = Astro.props;
+
+const files = {
+  master: { src: url("/brand/logo-master.png"), w: 2217, h: 569 },
+  golf: { src: url("/brand/logo-golf.png"), w: 2420, h: 649 },
+  lasertag: { src: url("/brand/logo-lasertag.png"), w: 2405, h: 679 },
+};
+const f = files[variant];
+---
+
+<img
+  src={f.src}
+  width={f.w}
+  height={f.h}
+  alt="Putt & Play Golf Center"
+  class:list={["h-auto", className]}
+  loading={eager ? "eager" : "lazy"}
+  decoding="async"
+/>

@@ -1,0 +1,10 @@
+---
+import { surface, type BrandColor } from "../lib/colors";
+interface Props {
+  color?: BrandColor;
+  class?: string;
+}
+const { color = "gold", class: className = "" } = Astro.props;
+---
+
+<span class:list={["pill", surface[color], className]}><slot /></span>

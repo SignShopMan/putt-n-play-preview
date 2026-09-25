@@ -1,0 +1,36 @@
+---
+import { url } from "../lib/url";
+import Base from "../layouts/Base.astro";
+import PriceGroup from "../components/PriceGroup.astro";
+import pricing from "../data/pricing.json";
+import business from "../data/business.json";
+---
+
+<Base
+  title="Prices | Putt & Play Bellefontaine"
+  description="Current prices for golf simulators, indoor mini golf, glow putt, laser tag, VR, combo packages, and birthday parties at Putt & Play in Bellefontaine, Ohio."
+>
+  <section class="section">
+    <div class="container-brand">
+      <span class="pill bg-gold">Pricing</span>
+      <h1 class="h-hero mt-5">Every price, one page.</h1>
+      <p class="prose-brand mt-6">No surprises. Here's what everything costs. Questions? Call {business.phone}.</p>
+
+      {/* TODO: VERIFY entire price table with owner before launch (src/data/pricing.json) */}
+      <nav aria-label="Price sections" class="mt-8">
+        <ul class="flex flex-wrap gap-2">
+          {pricing.groups.map((g) => <li><a href={`#price-${g.id}`} class="pill bg-paper hover:bg-gold">{g.name}</a></li>)}
+        </ul>
+      </nav>
+
+      <div class="mt-12 grid gap-8 lg:grid-cols-2">
+        {pricing.groups.map((g) => <div class:list={[g.id === "specials" && "lg:col-span-2"]}><PriceGroup id={g.id} headingLevel="h2" /></div>)}
+      </div>
+      <p class="prose-brand mt-8">{pricing.footnote}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={url("/parties")} class="btn-primary">Book a party</a>
+        <a href={business.links.giftCards} class="btn-secondary" target="_blank" rel="noopener">Buy a gift card</a>
+      </div>
+    </div>
+  </section>
+</Base>

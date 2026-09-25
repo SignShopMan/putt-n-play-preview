@@ -1,0 +1,30 @@
+---
+import Photo from "./Photo.astro";
+import SectionLabel from "./SectionLabel.astro";
+import type { BrandColor } from "../lib/colors";
+
+interface Props {
+  label: string;
+  labelColor?: BrandColor;
+  title: string;
+  lede: string;
+  photo: string;
+  photoAlt: string;
+  glow?: boolean;
+}
+const { label, labelColor = "gold", title, lede, photo, photoAlt, glow = false } = Astro.props;
+---
+
+<section class:list={["section", glow ? "bg-night text-paper" : "bg-paper"]}>
+  <div class="container-brand grid items-center gap-10 md:grid-cols-2">
+    <div>
+      <SectionLabel color={labelColor}>{label}</SectionLabel>
+      <h1 class:list={["h-hero mt-5", glow && "text-neon-green glow"]}>{title}</h1>
+      <p class="prose-brand mt-6">{lede}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <slot name="actions" />
+      </div>
+    </div>
+    <Photo slot={photo} alt={photoAlt} eager glow={glow} />
+  </div>
+</section>

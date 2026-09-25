@@ -1,0 +1,44 @@
+---
+import business from "../data/business.json";
+import { groupedHours } from "../lib/hours";
+interface Props {
+  headingLevel?: "h1" | "h2";
+  title?: string;
+}
+const { headingLevel = "h2", title = "Hours and directions" } = Astro.props;
+const H = headingLevel;
+const a = business.address;
+const mapQuery = encodeURIComponent(`${business.name}, ${a.street}, ${a.city}, ${a.region} ${a.postalCode}`);
+---
+
+<section class="section" id="hours">
+  <div class="container-brand grid gap-10 md:grid-cols-2">
+    <div>
+      <span class="pill bg-gold">Visit</span>
+      <H class:list={[headingLevel === "h1" ? "h-hero" : "h-section", "mt-5"]}>{title}</H>
+      <p class="prose-brand mt-4">Right on West Columbus Ave in downtown Bellefontaine.</p>
+
+      <div class="card mt-8 p-6">
+        <h3 class="label font-bold">Hours</h3>
+        {/* TODO: hours not yet verified by owner (src/data/hours.json) */}
+        <dl class="mt-3 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-lg">
+          {groupedHours().map((g) => (<><dt class="font-semibold">{g.label}</dt><dd>{g.value}</dd></>))}
+        </dl>
+        <h3 class="label mt-6 font-bold">Find us</h3>
+        <address class="mt-2 text-lg not-italic">{a.street}, {a.city}, {a.region} {a.postalCode}</address>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a href={business.phoneHref} class="btn-primary">Call {business.phone}</a>
+          <a href={`https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`} class="btn-secondary" target="_blank" rel="noopener">Get directions</a>
+        </div>
+      </div>
+    </div>
+    <div class="photo-frame relative min-h-[320px] bg-paper">
+      <iframe
+        title="Map to Putt & Play Golf Center"
+        src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+        class="absolute inset-0 h-full w-full"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>

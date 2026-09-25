@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+  /* Core */
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-gold: #e9bb45; /* master bar, primary buttons */
+  --color-flag: #da3831; /* small accents only */
+
+  /* Golf */
+  --color-fairway: #2b663c;
+  --color-green: #41924d;
+
+  /* Laser tag */
+  --color-laser: #cd2e7d;
+  --color-burst: #86308b;
+  --color-beam: #845b96;
+  --color-zap: #fdf251; /* never on white */
+
+  /* PROPOSED, not yet approved (brand guide p.6) — TODO: owner to approve VR / Arcade / League colors */
+  --color-vr: #0e7490;
+  --color-arcade: #f2762e; /* use black text */
+  --color-league: #1e3a5f;
+
+  /* Glow mode */
+  --color-night: #0b0b0f;
+  --color-neon-green: #39ff88;
+  --color-neon-pink: #ff4fa3;
+  --color-neon-cyan: #2fe6ff;
+
+  /* Type (self-hosted variable fonts via Fontsource) */
+  --font-display: "Unbounded Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Shape */
+  --radius-card: 16px;
+  --shadow-hard: 6px 6px 0 #000;
+  --shadow-hard-sm: 4px 4px 0 #000;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper font-body text-ink antialiased;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .btn,
+  .btn-primary,
+  .btn-secondary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border-[3px] border-ink px-6 py-3 font-display text-sm font-bold transition;
+  }
+  .btn:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hard-sm);
+  }
+  .btn:active,
+  .btn-primary:active,
+  .btn-secondary:active {
+    transform: none;
+    box-shadow: none;
+  }
+  .btn-primary {
+    @apply bg-gold text-ink;
+  }
+  .btn-secondary {
+    @apply bg-paper text-ink;
+  }
+  .card {
+    @apply overflow-hidden rounded-[var(--radius-card)] border-[3px] border-ink bg-paper shadow-[var(--shadow-hard)];
+  }
+  .label {
+    @apply font-display text-xs uppercase tracking-[.14em];
+  }
+  .pill {
+    @apply inline-flex items-center rounded-full border-[3px] border-ink px-4 py-1 font-display text-xs font-bold uppercase tracking-[.14em];
+  }
+  .price-pill {
+    @apply inline-flex items-center rounded-full border-[3px] border-ink bg-gold px-4 py-1 font-display text-sm font-bold text-ink;
+  }
+  .glow {
+    text-shadow:
+      0 0 8px currentColor,
+      0 0 24px currentColor;
+  }
+  .photo-frame {
+    @apply overflow-hidden rounded-[var(--radius-card)] border-[3px] border-ink;
+  }
+  .prose-brand {
+    @apply max-w-[65ch] text-lg leading-[1.6];
+  }
+  .section {
+    @apply px-4 py-14 sm:px-6 md:py-24;
+  }
+  .container-brand {
+    @apply mx-auto w-full max-w-[1200px];
+  }
+  .h-hero {
+    @apply font-display text-4xl leading-none font-black md:text-7xl;
+  }
+  .h-section {
+    @apply font-display text-3xl font-bold md:text-5xl;
+  }
+  .h-card {
+    @apply font-display text-xl font-bold md:text-2xl;
+  }
+  .price {
+    @apply font-display text-2xl font-black md:text-3xl;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn,
+    .btn-primary,
+    .btn-secondary,
+    .btn:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: none;
+      transition: none;
+    }
+  }
+}

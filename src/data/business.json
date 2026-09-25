@@ -1,0 +1,24 @@
+{
+  "_TODO": "Owner to confirm email and simulator brand before launch (brand guide p.12, launch checklist #1).",
+  "name": "Putt & Play Golf Center",
+  "shortName": "Putt & Play",
+  "url": "https://www.puttplaygolfcenter.com/",
+  "phone": "937-404-1330",
+  "phoneHref": "tel:+19374041330",
+  "email": "puttandplaygc@gmail.com",
+  "emailVerified": false,
+  "address": {
+    "street": "209 W Columbus Ave",
+    "city": "Bellefontaine",
+    "region": "OH",
+    "postalCode": "43311",
+    "country": "US"
+  },
+  "geo": { "lat": 40.3610008, "lng": -83.7623105 },
+  "links": {
+    "facebook": "https://www.facebook.com/ppgc17/",
+    "giftCards": "https://squareup.com/gift/BDKKTGTZGT9AD/order",
+    "tour": "https://my.matterport.com/show/?m=cu8BZzczX6K"
+  },
+  "about": "Family-owned by lifelong Logan County residents who wanted to bring fun things for friends and families to enjoy here at home."
+}

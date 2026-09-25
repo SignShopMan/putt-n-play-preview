@@ -1,0 +1,80 @@
+---
+import { url } from "../lib/url";
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import LockupPanel from "../components/LockupPanel.astro";
+import PriceGroup from "../components/PriceGroup.astro";
+import Photo from "../components/Photo.astro";
+import business from "../data/business.json";
+---
+
+<Base
+  title="Laser Tag Arena in Bellefontaine, OH | Putt & Play"
+  description="A 1,400+ sq ft black-light laser tag arena with advanced taggers, team and free-for-all play, and laser tag birthday parties in Bellefontaine, Ohio."
+>
+  <PageHero
+    label="Laser tag"
+    labelColor="laser"
+    title="Lights down. Game on."
+    lede="A 1,400+ sq ft arena with black lights, neon colors, and laser light shows. Grab a tagger and pick a side."
+    photo="laser-tag"
+    photoAlt="Players in laser tag vests moving through the black-light arena"
+    glow
+  >
+    <Fragment slot="actions">
+      <a href="#prices" class="btn border-ink bg-neon-pink text-ink">See prices</a>
+      <a href={url("/parties")} class="btn-primary">Laser tag parties</a>
+    </Fragment>
+  </PageHero>
+
+  <section class="section">
+    <div class="container-brand">
+      <LockupPanel variant="lasertag" />
+      <div class="mt-14 grid gap-8 md:grid-cols-3">
+        {
+          [
+            { t: "Team play", b: "Split into squads and battle it out for the high score.", c: "bg-laser" },
+            { t: "Free-for-all", b: "Every player for themselves. Last one standing gets the bragging rights.", c: "bg-burst" },
+            { t: "Star Wars mode", b: "A special game mode we built in-house. Ask about it at the counter.", c: "bg-beam" },
+          ].map((m) => (
+            <div class="card">
+              <div class:list={["h-4 border-b-[3px] border-ink", m.c]} aria-hidden="true" />
+              <div class="p-6">
+                <h2 class="h-card">{m.t}</h2>
+                <p class="mt-3 leading-relaxed">{m.b}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <p class="prose-brand mx-auto mt-10 text-center">
+        Advanced tagger kits mimic 90+ weapon types, so no two rounds play the same.
+      </p>
+    </div>
+  </section>
+
+  <section class="section border-y-[3px] border-ink bg-night text-paper" id="prices">
+    <div class="container-brand grid items-start gap-10 md:grid-cols-2">
+      <div>
+        <h2 class="font-display text-3xl font-bold text-neon-pink glow md:text-5xl">Laser tag prices</h2>
+        <p class="prose-brand mt-4">The more rounds you buy, the less each one costs. One ticket per person per round.</p>
+        <div class="mt-8"><Photo slot="laser-tag-gear" alt="Laser tag taggers and vests ready for the next round" glow /></div>
+      </div>
+      <PriceGroup id="laser-tag" showTitle={false} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-brand card flex flex-col items-start justify-between gap-6 p-6 md:flex-row md:items-center md:p-10">
+      <div>
+        <span class="pill bg-laser text-paper">Parties</span>
+        <h2 class="h-section mt-4">Laser tag birthday party</h2>
+        <p class="mt-3 max-w-[60ch] text-lg">2 laser tag tickets each, a private room, and cheese pizza and a 2-liter soda per 5 guests. $19.99 per person. Max 50.</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href={url("/parties")} class="btn-primary">Book a party</a>
+        <a href={business.phoneHref} class="btn-secondary">Call {business.phone}</a>
+      </div>
+    </div>
+  </section>
+</Base>

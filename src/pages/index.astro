@@ -1,0 +1,160 @@
+---
+import { url } from "../lib/url";
+import Base from "../layouts/Base.astro";
+import Photo from "../components/Photo.astro";
+import ActivityCard from "../components/ActivityCard.astro";
+import VisitBlock from "../components/VisitBlock.astro";
+import activities from "../data/activities.json";
+import business from "../data/business.json";
+import { schemaHours } from "../lib/hours";
+import type { BrandColor } from "../lib/colors";
+
+const a = business.address;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "EntertainmentBusiness",
+  name: business.name,
+  url: business.url,
+  telephone: "+1-937-404-1330",
+  email: business.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: a.street,
+    addressLocality: a.city,
+    addressRegion: a.region,
+    postalCode: a.postalCode,
+    addressCountry: a.country,
+  },
+  geo: { "@type": "GeoCoordinates", latitude: business.geo.lat, longitude: business.geo.lng },
+  openingHoursSpecification: schemaHours(),
+  sameAs: [business.links.facebook],
+  amenityFeature: ["Indoor mini golf", "Golf simulators", "Laser tag", "Virtual reality"].map((name) => ({
+    "@type": "LocationFeatureSpecification",
+    name,
+    value: true,
+  })),
+};
+---
+
+<Base
+  title="Putt & Play | Indoor Mini Golf, Golf Simulators & Laser Tag in Bellefontaine, OH"
+  description="Indoor mini golf, golf simulators, laser tag, VR, and a multisport arcade in downtown Bellefontaine, Ohio. Birthday parties, glow putt, and winter golf leagues."
+  schema={schema}
+>
+  <!-- 1. Hero -->
+  <section class="section">
+    <div class="container-brand grid items-center gap-10 md:grid-cols-[1.05fr_1fr]">
+      <div>
+        <span class="pill bg-gold">Indoor golf & games</span>
+        <h1 class="h-hero mt-5">Everyone finds their game.</h1>
+        <p class="prose-brand mt-6">
+          Golf simulators, an 18-hole indoor miniature golf course, laser tag, VR, and a multisport arcade. All under one
+          roof in downtown Bellefontaine. Rain, snow, or 90 degrees, the greens are always perfect in here.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={url("/parties")} class="btn-primary">Book a party</a>
+          <a href={url("/pricing")} class="btn-secondary">See prices</a>
+        </div>
+      </div>
+      <Photo slot="hero" alt="Friends and families playing inside Putt & Play" eager aspect="aspect-[5/4]" sizes="(min-width: 768px) 50vw, 100vw" />
+    </div>
+  </section>
+
+  <!-- 2. Activity grid -->
+  <section class="section pt-0 md:pt-0" aria-labelledby="activities-heading">
+    <div class="container-brand">
+      <h2 id="activities-heading" class="h-section">Pick your game</h2>
+      <p class="prose-brand mt-3">Five ways to play, one front door. Bring the kids Saturday. Bring your league Tuesday.</p>
+      <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {activities.map((act) => <ActivityCard {...act} color={act.color as BrandColor} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Glow putt band -->
+  <section class="section border-y-[3px] border-ink bg-night text-paper" aria-labelledby="glow-heading">
+    <div class="container-brand grid items-center gap-10 md:grid-cols-2">
+      <div>
+        <p class="label font-bold text-neon-cyan">After dark</p>
+        <h2 id="glow-heading" class="mt-4 font-display text-4xl leading-none font-black md:text-6xl">
+          <span class="glow text-neon-green">Glow putt</span>{" "}
+          <span class="glow text-neon-pink">nights</span>
+        </h2>
+        <p class="prose-brand mt-6">
+          The lights go down, the black lights come on, and all 18 holes start to glow. Glow putt runs on select days.
+        </p>
+        {/* TODO: owner to confirm which days glow putt runs */}
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={url("/mini-golf#glow")} class="btn border-ink bg-neon-green text-ink">Glow putt details</a>
+          <a href={url("/laser-tag")} class="btn border-ink bg-neon-pink text-ink">Laser tag</a>
+          <a href={url("/vr-arcade")} class="btn border-ink bg-neon-cyan text-ink">VR</a>
+        </div>
+      </div>
+      <Photo slot="glow-putt" alt="Mini golf course glowing under black lights" glow />
+    </div>
+  </section>
+
+  <!-- 4. Parties -->
+  <section class="section" aria-labelledby="parties-heading">
+    <div class="container-brand grid items-center gap-10 md:grid-cols-2">
+      <Photo slot="party" alt="Kids celebrating a birthday party at Putt & Play" class="order-last md:order-first" />
+      <div>
+        <span class="pill bg-flag text-paper">Parties</span>
+        <h2 id="parties-heading" class="h-section mt-5">Birthday parties, handled.</h2>
+        <p class="prose-brand mt-4">
+          Pick mini golf, laser tag, VR, or a golf sim. We bring the private room, the pizza, and the soda. You bring the
+          birthday kid.
+        </p>
+        <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+          <li class="card p-4"><p class="font-semibold">Mini golf party</p><p class="price">$12.99</p><p class="text-sm">per person</p></li>
+          <li class="card p-4"><p class="font-semibold">Laser tag party</p><p class="price">$19.99</p><p class="text-sm">per person</p></li>
+          <li class="card p-4"><p class="font-semibold">VR party</p><p class="price">$89.99</p><p class="text-sm">one booth, 2 hours</p></li>
+          <li class="card p-4"><p class="font-semibold">Golf sim party</p><p class="price">$99.99</p><p class="text-sm">one booth, 2 hours</p></li>
+        </ul>
+        {/* TODO: party prices unverified — mirror of src/data/pricing.json */}
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={url("/parties")} class="btn-primary">See party packages</a>
+          <a href={business.phoneHref} class="btn-secondary">Call {business.phone}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Leagues teaser -->
+  <section class="section border-y-[3px] border-ink bg-league text-paper" aria-labelledby="leagues-heading">
+    <div class="container-brand grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
+      <div>
+        <p class="label font-bold text-gold">Leagues and adult nights</p>
+        <h2 id="leagues-heading" class="h-section mt-4">Your winter golf season starts here.</h2>
+        <p class="prose-brand mt-4">
+          Winter golf leagues on the simulators, plus beer and wine for the grown-ups. Keep your swing sharp while the
+          course outside is under snow.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3 md:justify-end">
+        <a href={url("/leagues")} class="btn-primary">League details</a>
+        <a href={url("/golf")} class="btn-secondary">Golf simulators</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Hours, map, contact -->
+  <VisitBlock />
+
+  <!-- 7. Family-owned story -->
+  <section class="section pt-0 md:pt-0" aria-labelledby="story-heading">
+    <div class="container-brand">
+      <div class="card grid gap-8 p-6 md:grid-cols-[1fr_1.4fr] md:p-10">
+        <Photo slot="family" alt="The family that owns Putt & Play" aspect="aspect-square" />
+        <div class="self-center">
+          <span class="pill bg-gold">Our story</span>
+          <h2 id="story-heading" class="h-section mt-5">Made right here</h2>
+          <p class="prose-brand mt-4">
+            Putt & Play is family-owned by lifelong Logan County residents. We wanted fun things for friends and families
+            to enjoy here at home, so we built them on West Columbus Ave. Come say hi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

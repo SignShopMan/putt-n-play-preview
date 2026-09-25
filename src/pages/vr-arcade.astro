@@ -1,0 +1,81 @@
+---
+import { url } from "../lib/url";
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import PriceGroup from "../components/PriceGroup.astro";
+import Photo from "../components/Photo.astro";
+import business from "../data/business.json";
+const sports = ["Soccer", "Bowling", "Dodgeball", "Baseball", "Football", "Disc golf", "Cornhole", "Foot golf", "Hunting", "Hockey"];
+---
+
+<Base
+  title="VR & Multisport Arcade in Bellefontaine, OH | Putt & Play"
+  description="Wireless VR stations with 30+ titles and a camera-based multisport arcade simulator with soccer, bowling, dodgeball, hockey, and more in Bellefontaine, Ohio."
+>
+  <PageHero
+    label="VR & arcade"
+    labelColor="vr"
+    title="Step into another world."
+    lede="2 wireless VR stations with 30+ titles, plus a multisport arcade simulator that turns one screen into a dozen games."
+    photo="vr"
+    photoAlt="Player wearing a VR headset at a Putt & Play VR station"
+  >
+    <Fragment slot="actions">
+      <a href="#prices" class="btn-primary">See VR prices</a>
+      <a href="#arcade" class="btn-secondary">Multisport arcade</a>
+    </Fragment>
+  </PageHero>
+
+  {/* NOTE: VR Cyan and Arcade Orange are PROPOSED colors, not yet approved (brand guide p.6) */}
+  <section class="section border-y-[3px] border-ink bg-vr text-paper">
+    <div class="container-brand">
+      <p class="label font-bold">Virtual reality</p>
+      <h2 class="h-section mt-3">2 stations. 30+ titles.</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="rounded-[var(--radius-card)] border-[3px] border-ink bg-paper p-6 text-ink shadow-[var(--shadow-hard)]">
+          <h3 class="h-card">Sharp and wireless</h3>
+          <p class="mt-3 leading-relaxed">HTC Vive Focus Vision headsets with 5K resolution, eye tracking, and wireless PC VR.</p>
+        </div>
+        <div class="rounded-[var(--radius-card)] border-[3px] border-ink bg-paper p-6 text-ink shadow-[var(--shadow-hard)]">
+          <h3 class="h-card">Fly, escape, explore</h3>
+          <p class="mt-3 leading-relaxed">From flying experiences to escape rooms, there's a title for every kind of player.</p>
+        </div>
+        <div class="rounded-[var(--radius-card)] border-[3px] border-ink bg-paper p-6 text-ink shadow-[var(--shadow-hard)]">
+          <h3 class="h-card">Share the booth</h3>
+          <p class="mt-3 leading-relaxed">Rent a booth by the hour and pass the headset around your group.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="prices">
+    <div class="container-brand grid items-start gap-10 md:grid-cols-2">
+      <div>
+        <h2 class="h-section">VR prices</h2>
+        <p class="prose-brand mt-4">Book a half-hour session or rent the whole booth.</p>
+        <p class="mt-4">VR birthday party: one booth for 2 hours, 2 large cheese pizzas, and a 2-liter soda. $89.99. Best for 8 or fewer.</p>
+      </div>
+      <PriceGroup id="vr" showTitle={false} />
+    </div>
+  </section>
+
+  <section class="section border-t-[3px] border-ink" id="arcade">
+    <div class="container-brand grid items-center gap-10 md:grid-cols-2">
+      <Photo slot="arcade" alt="Kids playing a sport on the multisport arcade simulator" />
+      <div>
+        <span class="pill bg-arcade text-ink">Multisport arcade</span>
+        <h2 class="h-section mt-5">One screen. A dozen sports.</h2>
+        <p class="prose-brand mt-4">A camera-based sports simulator that tracks real throws, kicks, and shots.</p>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {sports.map((s) => <li class="rounded-full border-[3px] border-ink bg-paper px-4 py-1 font-display text-xs font-bold">{s}</li>)}
+          <li class="rounded-full border-[3px] border-ink bg-arcade px-4 py-1 font-display text-xs font-bold text-ink">And more</li>
+        </ul>
+        {/* TODO: owner to confirm multisport arcade pricing (not listed on current pricing page) */}
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={business.phoneHref} class="btn-primary">Call for arcade prices</a>
+          <a href={url("/parties")} class="btn-secondary">Multisport sim party</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

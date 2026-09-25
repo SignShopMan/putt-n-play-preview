@@ -1,0 +1,66 @@
+---
+import { url } from "../lib/url";
+import Base from "../layouts/Base.astro";
+import Photo from "../components/Photo.astro";
+import business from "../data/business.json";
+---
+
+<Base
+  title="Winter Golf Leagues & Adult Nights | Putt & Play Bellefontaine"
+  description="Winter golf leagues on indoor simulators, plus beer and wine for adults, in downtown Bellefontaine, Ohio."
+>
+  {/* NOTE: League Navy is a PROPOSED color, not yet approved (brand guide p.6) */}
+  <section class="section border-b-[3px] border-ink bg-league text-paper">
+    <div class="container-brand grid items-center gap-10 md:grid-cols-2">
+      <div>
+        <span class="pill bg-gold text-ink">Leagues and adult nights</span>
+        <h1 class="h-hero mt-5">Your winter golf season starts here.</h1>
+        <p class="prose-brand mt-6">
+          When the courses close, the simulators don't. Join a winter league, grab a drink, and keep your game sharp
+          until spring.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={business.phoneHref} class="btn-primary">Call to join a league</a>
+          <a href={url("/golf")} class="btn-secondary">About the simulators</a>
+        </div>
+      </div>
+      <Photo slot="league" alt="League golfers at a simulator bay with drinks in hand" eager />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-brand grid gap-8 md:grid-cols-2">
+      <div class="card">
+        <div class="h-4 border-b-[3px] border-ink bg-fairway" aria-hidden="true"></div>
+        <div class="p-6 md:p-8">
+          <h2 class="h-card">Winter golf leagues</h2>
+          {/* TODO: owner to provide league schedule, format, and fees (launch checklist #2) */}
+          <dl class="mt-5 grid grid-cols-[auto_1fr] gap-x-6 gap-y-3">
+            <dt class="font-semibold">Schedule</dt><dd class="text-ink/70">Coming soon</dd>
+            <dt class="font-semibold">Format</dt><dd class="text-ink/70">Coming soon</dd>
+            <dt class="font-semibold">Fees</dt><dd class="text-ink/70">Coming soon</dd>
+          </dl>
+          <p class="mt-6">Want in? Call <a href={business.phoneHref} class="font-semibold underline">{business.phone}</a> and we'll save you a spot.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="h-4 border-b-[3px] border-ink bg-league" aria-hidden="true"></div>
+        <div class="p-6 md:p-8">
+          <h2 class="h-card">Beer and wine</h2>
+          {/* TODO: owner to confirm beer and wine selection and any age / ID policies (launch checklist #3) */}
+          <p class="mt-4 leading-relaxed">Beer and wine are available for adults. Selection details are coming soon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pt-0 md:pt-0">
+    <div class="container-brand card flex flex-col items-start justify-between gap-6 p-6 md:flex-row md:items-center md:p-10">
+      <div>
+        <h2 class="h-card">Date night, sorted</h2>
+        <p class="mt-2 max-w-[60ch]">A simulator booth, a round of glow putt, and a drink. A relaxed night out, right downtown.</p>
+      </div>
+      <a href={url("/pricing")} class="btn-primary">See prices</a>
+    </div>
+  </section>
+</Base>

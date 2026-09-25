@@ -1,0 +1,27 @@
+---
+import { url } from "../lib/url";
+import business from "../data/business.json";
+import { surface, type BrandColor } from "../lib/colors";
+interface Props {
+  title: string;
+  body?: string;
+  color?: BrandColor;
+}
+const { title, body, color = "gold" } = Astro.props;
+const dark = color !== "gold" && color !== "arcade" && color !== "paper";
+---
+
+<section class:list={["section border-y-[3px] border-ink", surface[color]]}>
+  <div class="container-brand flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+    <div>
+      <h2 class="h-section">{title}</h2>
+      {body && <p class="prose-brand mt-3">{body}</p>}
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <slot>
+        <a href={business.phoneHref} class:list={[dark ? "btn-primary" : "btn-secondary"]}>Call {business.phone}</a>
+        <a href={url("/parties")} class="btn-secondary">Book a party</a>
+      </slot>
+    </div>
+  </div>
+</section>

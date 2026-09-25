@@ -1,0 +1,10 @@
+[
+  { "label": "Golf sims", "href": "/golf" },
+  { "label": "Mini golf", "href": "/mini-golf" },
+  { "label": "Laser tag", "href": "/laser-tag" },
+  { "label": "VR & arcade", "href": "/vr-arcade" },
+  { "label": "Parties", "href": "/parties" },
+  { "label": "Leagues", "href": "/leagues" },
+  { "label": "Pricing", "href": "/pricing" },
+  { "label": "Visit", "href": "/visit" }
+]

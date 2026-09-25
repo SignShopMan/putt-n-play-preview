@@ -1,0 +1,78 @@
+---
+/**
+ * Drop a photo into src/assets/photos/ named after its slot
+ * (e.g. golf-sim.jpg, laser-tag.webp) and it replaces the placeholder
+ * automatically. Real venue photos only, no stock (brand guide p.9).
+ */
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  slot: string;
+  alt: string;
+  class?: string;
+  aspect?: string;
+  eager?: boolean;
+  widths?: number[];
+  sizes?: string;
+  glow?: boolean;
+}
+
+const {
+  slot,
+  alt,
+  class: className = "",
+  aspect = "aspect-[4/3]",
+  eager = false,
+  widths = [480, 800, 1200],
+  sizes = "(min-width: 768px) 50vw, 100vw",
+  glow = false,
+} = Astro.props;
+
+const files = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/photos/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG}",
+  { eager: true },
+);
+const match = Object.entries(files).find(([path]) => {
+  const base = path.split("/").pop()!.replace(/\.[^.]+$/, "");
+  return base === slot;
+});
+const image = match?.[1].default;
+---
+
+{
+  image ? (
+    <Image
+      src={image}
+      alt={alt}
+      widths={widths}
+      sizes={sizes}
+      loading={eager ? "eager" : "lazy"}
+      class:list={["photo-frame w-full object-cover", aspect, className]}
+    />
+  ) : (
+    <div
+      role="img"
+      aria-label={`Photo coming soon: ${alt}`}
+      data-photo-slot={slot}
+      class:list={[
+        "photo-frame relative grid w-full place-items-center p-6 text-center",
+        aspect,
+        glow ? "bg-night text-neon-green" : "bg-gold/25 text-ink",
+        className,
+      ]}
+      style={
+        glow
+          ? "background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 12px,transparent 12px 24px)"
+          : "background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.05) 0 12px,transparent 12px 24px)"
+      }
+    >
+      {/* TODO: add photo — src/assets/photos/{slot}.jpg */}
+      <div>
+        <p class="label font-bold">Photo coming soon</p>
+        <p class="mt-2 max-w-[28ch] text-sm opacity-80">{alt}</p>
+        <p class="mt-3 font-mono text-xs opacity-60">src/assets/photos/{slot}.jpg</p>
+      </div>
+    </div>
+  )
+}

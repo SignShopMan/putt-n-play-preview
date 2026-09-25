@@ -1,0 +1,16 @@
+---
+/**
+ * Activity lockup as a section header (one per activity section). Lives below
+ * the hero so it never shares a viewport-sized block with the master logo in
+ * the header (brand guide p.5). Always on a solid white panel.
+ */
+import Logo from "./Logo.astro";
+interface Props {
+  variant: "golf" | "lasertag";
+}
+const { variant } = Astro.props;
+---
+
+<div class="card mx-auto max-w-xl bg-paper px-6 py-8 md:px-10">
+  <Logo variant={variant} class="mx-auto w-full max-w-[420px] min-w-[180px]" />
+</div>

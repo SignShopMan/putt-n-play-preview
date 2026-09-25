@@ -1,0 +1,58 @@
+{
+  "_TODO": "VERIFY entire price table with owner. Source: puttplaygolfcenter.com/pricing as of Sept 2026 (brand guide p.13).",
+  "verified": false,
+  "groups": [
+    {
+      "id": "golf",
+      "name": "Golf simulators",
+      "color": "fairway",
+      "items": [
+        { "name": "Booth rental", "price": "$32", "unit": "per hour", "note": "Per booth, up to 8 players" },
+        { "name": "Driving range or challenge mode", "price": "$20", "unit": "per half hour" }
+      ]
+    },
+    {
+      "id": "mini-golf",
+      "name": "Mini golf",
+      "color": "green",
+      "items": [
+        { "name": "Regular", "price": "$6.75", "unit": "ages 11+", "alt": "$5.75 ages 4–10" },
+        { "name": "Glow putt", "price": "$7.75", "unit": "ages 11+", "alt": "$6.75 ages 4–10", "note": "Select days" }
+      ]
+    },
+    {
+      "id": "laser-tag",
+      "name": "Laser tag",
+      "color": "laser",
+      "note": "One ticket per person per round",
+      "items": [
+        { "name": "1–2 tickets", "price": "$8.99", "unit": "per round" },
+        { "name": "3–4 tickets", "price": "$7.99", "unit": "per round" },
+        { "name": "5+ tickets", "price": "$6.99", "unit": "per round" }
+      ]
+    },
+    {
+      "id": "vr",
+      "name": "Virtual reality",
+      "color": "vr",
+      "items": [
+        { "name": "Booth rental", "price": "$29", "unit": "per hour", "note": "Per booth, shareable" },
+        { "name": "Session", "price": "$15", "unit": "per half hour" }
+      ]
+    },
+    {
+      "id": "specials",
+      "name": "Specials and parties",
+      "color": "gold",
+      "items": [
+        { "name": "Combo packages", "price": "$12.75–$17.75", "note": "Available every day" },
+        { "name": "Recreation room", "price": "$50", "unit": "per hour", "note": "Up to 50 people" },
+        { "name": "Mini golf birthday party", "price": "$12.99", "unit": "per person", "note": "Mini golf, private room, cheese pizza and a 2-liter soda per 5 guests. Max 50." },
+        { "name": "Laser tag birthday party", "price": "$19.99", "unit": "per person", "note": "2 laser tag tickets each, private room, cheese pizza and a 2-liter soda per 5 guests. Max 50." },
+        { "name": "VR birthday party", "price": "$89.99", "note": "One booth for 2 hours, 2 large cheese pizzas, 2-liter soda. Best for 8 or fewer." },
+        { "name": "Golf or multisport sim party", "price": "$99.99", "note": "One booth for 2 hours, 2 large cheese pizzas, 2-liter soda. Best for 8 or fewer." }
+      ]
+    }
+  ],
+  "footnote": "Party packages without food are available at lower prices. Call for details. For any other occasion, contact the venue to plan a custom event."
+}

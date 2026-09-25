@@ -1,0 +1,51 @@
+---
+import { url } from "../lib/url";
+import "@fontsource-variable/unbounded";
+import "@fontsource-variable/figtree";
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import business from "../data/business.json";
+
+interface Props {
+  title: string;
+  description: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+}
+const { title, description, schema } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+// TODO: replace with a 1200×630 og-image.png exported from vector artwork.
+const ogImage = new URL(url("/brand/og-image.png"), Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {import.meta.env.PUBLIC_NOINDEX === "true" && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+    {/* TODO: swap for the "P&P" monogram favicon when the designer delivers it */}
+    <link rel="icon" type="image/svg+xml" href={url("/brand/favicon.svg")} />
+    <meta name="theme-color" content="#E9BB45" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <Header />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

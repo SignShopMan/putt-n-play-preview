@@ -1,0 +1,150 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import Photo from "../components/Photo.astro";
+import pricing from "../data/pricing.json";
+import business from "../data/business.json";
+
+const specials = pricing.groups.find((g) => g.id === "specials")!.items;
+const packages = [
+  { key: "Mini golf birthday party", color: "bg-green", photo: "party-mini-golf" },
+  { key: "Laser tag birthday party", color: "bg-laser", photo: "party-laser-tag" },
+  { key: "VR birthday party", color: "bg-vr", photo: "party-vr" },
+  { key: "Golf or multisport sim party", color: "bg-fairway", photo: "party-sim" },
+].map((p) => ({ ...p, item: specials.find((s) => s.name === p.key)! }));
+const room = specials.find((s) => s.name === "Recreation room")!;
+const combo = specials.find((s) => s.name === "Combo packages")!;
+---
+
+<Base
+  title="Birthday Parties & Group Events | Putt & Play Bellefontaine"
+  description="Mini golf, laser tag, VR, and golf simulator birthday party packages with pizza and a private room, plus recreation room rental for groups up to 50 in Bellefontaine, Ohio."
+>
+  <PageHero
+    label="Parties and events"
+    labelColor="flag"
+    title="Birthday parties, handled."
+    lede="Pick the game, and we'll handle the room, the pizza, and the soda. Groups up to 50."
+    photo="party"
+    photoAlt="Birthday party guests celebrating in the Putt & Play party room"
+  >
+    <Fragment slot="actions">
+      <a href={business.phoneHref} class="btn-primary">Call {business.phone} to book</a>
+      <a href="#inquiry" class="btn-secondary">Send an inquiry</a>
+    </Fragment>
+  </PageHero>
+
+  <section class="section pt-0 md:pt-0" aria-labelledby="packages-heading">
+    <div class="container-brand">
+      <h2 id="packages-heading" class="h-section">Party packages</h2>
+      {/* TODO: party prices unverified — confirm with owner (src/data/pricing.json) */}
+      <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          packages.map((p) => (
+            <article class="card flex flex-col">
+              <div class:list={["h-4 border-b-[3px] border-ink", p.color]} aria-hidden="true" />
+              <Photo slot={p.photo} alt={`${p.item.name} at Putt & Play`} class="!rounded-none !border-0" aspect="aspect-[16/10]" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" />
+              <div class="flex flex-1 flex-col gap-3 border-t-[3px] border-ink p-5">
+                <h3 class="h-card">{p.item.name.replace(" birthday party", "").replace(" party", "")}</h3>
+                <p>
+                  <span class="price">{p.item.price}</span>
+                  {"unit" in p.item && p.item.unit && <span class="ml-1 text-sm">{p.item.unit}</span>}
+                </p>
+                <p class="text-base leading-relaxed">{p.item.note}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+      <p class="prose-brand mt-8">{pricing.footnote}</p>
+    </div>
+  </section>
+
+  <section class="section border-y-[3px] border-ink bg-gold">
+    <div class="container-brand grid gap-8 md:grid-cols-2">
+      <div>
+        <p class="label font-bold">Groups and businesses</p>
+        <h2 class="h-section mt-3">Rent the rec room</h2>
+        <p class="prose-brand mt-4">
+          Team events, club meetings, family reunions. The recreation room holds up to 50 people. {room.price} {room.unit}.
+        </p>
+      </div>
+      <div class="card self-center p-6">
+        <h3 class="h-card">Combo packages</h3>
+        <p class="mt-2"><span class="price">{combo.price}</span></p>
+        <p class="mt-2">Mix activities in one visit. {combo.note}.</p>
+        {/* TODO: owner to list what's in each combo package */}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="inquiry" aria-labelledby="inquiry-heading">
+    <div class="container-brand grid gap-10 md:grid-cols-[1fr_1.3fr]">
+      <div>
+        <h2 id="inquiry-heading" class="h-section">Plan your party</h2>
+        <p class="prose-brand mt-4">
+          The fastest way to book is to call {business.phone}. Or send us the details here and we'll get back to you.
+        </p>
+        <a href={business.phoneHref} class="btn-primary mt-6">Call {business.phone}</a>
+      </div>
+
+      {/*
+        TODO: booking method not decided (launch checklist #6: phone, form, or online booking tool).
+        This form currently opens the visitor's email app with the details filled in.
+        Swap `action` for a form service (Formspree, Netlify Forms, etc.) or a booking tool when decided.
+      */}
+      <form id="party-form" class="card grid gap-5 p-6 md:p-8" action={`mailto:${business.email}`} method="post" enctype="text/plain">
+        <div class="grid gap-5 sm:grid-cols-2">
+          <label class="grid gap-2">
+            <span class="font-semibold">Your name</span>
+            <input required name="name" autocomplete="name" class="min-h-11 rounded-xl border-[3px] border-ink px-4" />
+          </label>
+          <label class="grid gap-2">
+            <span class="font-semibold">Phone</span>
+            <input required name="phone" type="tel" autocomplete="tel" class="min-h-11 rounded-xl border-[3px] border-ink px-4" />
+          </label>
+        </div>
+        <label class="grid gap-2">
+          <span class="font-semibold">Email</span>
+          <input name="email" type="email" autocomplete="email" class="min-h-11 rounded-xl border-[3px] border-ink px-4" />
+        </label>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <label class="grid gap-2">
+            <span class="font-semibold">Preferred date</span>
+            <input name="date" type="date" class="min-h-11 rounded-xl border-[3px] border-ink px-4" />
+          </label>
+          <label class="grid gap-2">
+            <span class="font-semibold">Number of guests</span>
+            <input name="guests" type="number" min="1" max="50" class="min-h-11 rounded-xl border-[3px] border-ink px-4" />
+          </label>
+        </div>
+        <label class="grid gap-2">
+          <span class="font-semibold">Package</span>
+          <select name="package" class="min-h-11 rounded-xl border-[3px] border-ink bg-paper px-4">
+            {packages.map((p) => <option>{p.item.name}</option>)}
+            <option>Recreation room rental</option>
+            <option>Something else</option>
+          </select>
+        </label>
+        <label class="grid gap-2">
+          <span class="font-semibold">Anything else?</span>
+          <textarea name="notes" rows="4" class="rounded-xl border-[3px] border-ink px-4 py-3"></textarea>
+        </label>
+        <button type="submit" class="btn-primary justify-self-start">Send inquiry</button>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Build a readable mailto: body instead of the browser's raw text/plain encoding.
+  const form = document.getElementById("party-form") as HTMLFormElement | null;
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    const lines = [...data.entries()].map(([k, v]) => `${k[0].toUpperCase() + k.slice(1)}: ${v}`);
+    const to = form.action.replace(/^mailto:/, "");
+    window.location.href = `mailto:${to}?subject=${encodeURIComponent("Party inquiry")}&body=${encodeURIComponent(lines.join("\n"))}`;
+  });
+</script>

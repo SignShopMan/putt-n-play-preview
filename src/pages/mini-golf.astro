@@ -1,0 +1,80 @@
+---
+import { url } from "../lib/url";
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import LockupPanel from "../components/LockupPanel.astro";
+import PriceGroup from "../components/PriceGroup.astro";
+import Photo from "../components/Photo.astro";
+import business from "../data/business.json";
+---
+
+<Base
+  title="Indoor Mini Golf & Glow Putt | Putt & Play Bellefontaine"
+  description="An 18-hole indoor miniature golf course with a leaderboard and glow putt nights in downtown Bellefontaine, Ohio."
+>
+  <PageHero
+    label="Mini golf"
+    labelColor="fairway"
+    title="18 holes. Zero weather."
+    lede="Our 18-hole indoor miniature golf course is open all year, with a leaderboard for bragging rights. Rain, snow, or 90 degrees, the greens are always perfect in here."
+    photo="mini-golf"
+    photoAlt="Kid lining up a putt on the indoor mini golf course"
+  >
+    <Fragment slot="actions">
+      <a href="#prices" class="btn-primary">See prices</a>
+      <a href={url("/visit")} class="btn-secondary">Hours and directions</a>
+    </Fragment>
+  </PageHero>
+
+  <section class="section border-t-[3px] border-ink bg-green/5">
+    <div class="container-brand">
+      <LockupPanel variant="golf" />
+      <div class="mt-14 grid items-center gap-10 md:grid-cols-2">
+        <Photo slot="leaderboard" alt="The mini golf leaderboard" />
+        <div>
+          <h2 class="h-section">Get on the board</h2>
+          <p class="prose-brand mt-4">
+            Every hole counts. Post a great score and your name goes up on the leaderboard for the next group to chase.
+          </p>
+          {/* TODO: owner to describe how the leaderboard works (weekly? monthly? prizes?) */}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="glow" class="section border-y-[3px] border-ink bg-night text-paper">
+    <div class="container-brand grid items-center gap-10 md:grid-cols-2">
+      <div>
+        <p class="label font-bold text-neon-cyan">Select days</p>
+        <h2 class="mt-4 font-display text-4xl leading-none font-black md:text-6xl">
+          <span class="glow text-neon-green">Glow</span> <span class="glow text-neon-pink">putt</span>
+        </h2>
+        <p class="prose-brand mt-6">Same 18 holes, lights down, black lights on. Glow putt runs on select days and special occasions.</p>
+        {/* TODO: owner to confirm glow putt schedule */}
+        <p class="mt-6"><span class="price text-neon-green">$7.75</span> <span>ages 11+</span> · <span class="font-semibold">$6.75</span> ages 4–10</p>
+        <div class="mt-8"><a href={business.links.facebook} target="_blank" rel="noopener" class="btn border-ink bg-neon-green text-ink">Check Facebook for glow days</a></div>
+      </div>
+      <Photo slot="glow-putt" alt="Glowing golf balls on a black-light mini golf hole" glow />
+    </div>
+  </section>
+
+  <section class="section" id="prices">
+    <div class="container-brand grid items-start gap-10 md:grid-cols-2">
+      <div>
+        <h2 class="h-section">Mini golf prices</h2>
+        <p class="prose-brand mt-4">One round, all 18 holes.</p>
+      </div>
+      <PriceGroup id="mini-golf" showTitle={false} />
+    </div>
+  </section>
+
+  <section class="section pt-0 md:pt-0">
+    <div class="container-brand card flex flex-col items-start justify-between gap-6 p-6 md:flex-row md:items-center md:p-10">
+      <div>
+        <h2 class="h-card">Mini golf birthday party</h2>
+        <p class="mt-2 max-w-[60ch]">Mini golf, a private room, and cheese pizza and a 2-liter soda per 5 guests. $12.99 per person. Max 50.</p>
+      </div>
+      <a href={url("/parties")} class="btn-primary">Book a party</a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "golf",
+    "name": "Golf simulators",
+    "href": "/golf",
+    "color": "fairway",
+    "photo": "golf-sim",
+    "blurb": "3 simulators, 150,000+ courses, up to 8 players per booth.",
+    "from": "$20"
+  },
+  {
+    "id": "mini-golf",
+    "name": "Mini golf",
+    "href": "/mini-golf",
+    "color": "green",
+    "photo": "mini-golf",
+    "blurb": "An 18-hole indoor course with a leaderboard. Glow putt on select days.",
+    "from": "$5.75"
+  },
+  {
+    "id": "laser-tag",
+    "name": "Laser tag",
+    "href": "/laser-tag",
+    "color": "laser",
+    "photo": "laser-tag",
+    "blurb": "1,400+ sq ft black-light arena with team and free-for-all play.",
+    "from": "$6.99"
+  },
+  {
+    "id": "vr",
+    "name": "Virtual reality",
+    "href": "/vr-arcade",
+    "color": "vr",
+    "photo": "vr",
+    "blurb": "2 wireless VR stations with 30+ titles, from flying to escape rooms.",
+    "from": "$15"
+  },
+  {
+    "id": "arcade",
+    "name": "Multisport arcade",
+    "href": "/vr-arcade#arcade",
+    "color": "arcade",
+    "photo": "arcade",
+    "blurb": "Soccer, bowling, dodgeball, baseball, hockey, and more on one screen.",
+    "from": null
+  }
+]
