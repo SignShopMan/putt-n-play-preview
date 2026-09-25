@@ -9,7 +9,7 @@ const specials = pricing.groups.find((g) => g.id === "specials")!.items;
 const packages = [
   { key: "Mini golf birthday party", color: "bg-green", photo: "party-mini-golf", alt: "Kids and parents playing the mini golf course" },
   { key: "Laser tag birthday party", color: "bg-laser", photo: "party-laser-tag", alt: "Glowing neon barriers in the laser tag arena" },
-  { key: "VR birthday party", color: "bg-vr", photo: "party-vr", alt: "A VR station at Putt and Play" },
+  { key: "VR birthday party", color: "bg-vr", photo: "party-vr", alt: "Two players wearing VR headsets" },
   { key: "Golf or multisport sim party", color: "bg-fairway", photo: "party-sim", alt: "A golfer swinging in a simulator bay" },
 ].map((p) => ({ ...p, item: specials.find((s) => s.name === p.key)! }));
 const room = specials.find((s) => s.name === "Recreation room")!;

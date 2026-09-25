@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import VisitBlock from "../components/VisitBlock.astro";
+import Photo from "../components/Photo.astro";
 import business from "../data/business.json";
 
 /*
@@ -21,6 +22,20 @@ const faqs = [
   description="Hours, directions, parking, and contact info for Putt & Play Golf Center at 209 W Columbus Ave in downtown Bellefontaine, Ohio."
 >
   <VisitBlock headingLevel="h1" title="Come play." />
+
+  <section class="section pt-0 md:pt-0" aria-labelledby="find-heading">
+    <div class="container-brand grid items-center gap-8 md:grid-cols-[1.2fr_1fr_1fr]">
+      <div>
+        <h2 id="find-heading" class="h-section">Look for the big guy</h2>
+        <p class="prose-brand mt-4">
+          We're the brick storefront on West Columbus Ave. Every year, a giant marshmallow man stands guard out front.
+          Hard to miss.
+        </p>
+      </div>
+      <Photo slot="storefront" alt="The Putt and Play brick storefront and banners on West Columbus Ave" aspect="aspect-[3/4]" sizes="(min-width: 768px) 25vw, 100vw" />
+      <Photo slot="marshmallow-man" alt="A giant inflatable marshmallow man standing outside the Putt and Play storefront" aspect="aspect-[3/4]" sizes="(min-width: 768px) 25vw, 100vw" />
+    </div>
+  </section>
 
   <section class="section pt-0 md:pt-0">
     <div class="container-brand grid gap-8 md:grid-cols-3">

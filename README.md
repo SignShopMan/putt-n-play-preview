@@ -30,9 +30,15 @@ Any of `.jpg .jpeg .png .webp .avif` works.
 | `party-mini-golf`, `party-laser-tag`, `party-vr`, `party-sim` | Party package cards |
 | `league` | Leagues hero |
 | `beer-wine` | Leagues, beer and wine card |
-| `family` | Home "Our story" |
+| `marshmallow-man` | Home "Our story", Visit |
+| `storefront` | Visit |
+| `sim-courses` | Golf, 150,000+ courses |
+| `emoji-balls` | Mini golf prices |
+| `holiday-halloween`, `holiday-christmas` | Mini golf, seasonal decor |
+| `gift-cards` | Pricing, gift card callout |
+| `league-scorecard` | Leagues card (stock) |
 
-Still needed: `vr`, `party-vr` (no VR photos yet). Original uploads are kept in `photos-raw/` (git-ignored).
+Stock placeholders to replace with real photos: `vr`, `party-vr`, `league-scorecard`. Original uploads are kept in `photos-raw/` (git-ignored).
 
 Alt text lives next to each `<Photo>` in the page — update it to describe the actual photo.
 

@@ -2,6 +2,7 @@
 import { url } from "../lib/url";
 import Base from "../layouts/Base.astro";
 import PriceGroup from "../components/PriceGroup.astro";
+import Photo from "../components/Photo.astro";
 import pricing from "../data/pricing.json";
 import business from "../data/business.json";
 ---
@@ -29,7 +30,17 @@ import business from "../data/business.json";
       <p class="prose-brand mt-8">{pricing.footnote}</p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href={url("/parties")} class="btn-primary">Book a party</a>
-        <a href={business.links.giftCards} class="btn-secondary" target="_blank" rel="noopener">Buy a gift card</a>
+      </div>
+
+      <div class="card mt-16 grid items-center gap-8 p-6 md:grid-cols-[1fr_1.3fr] md:p-10">
+        <Photo slot="gift-cards" alt="A fan of Putt and Play Golf Center gift cards on a wooden table" aspect="aspect-[4/3]" />
+        <div>
+          <span class="pill bg-gold">Gift cards</span>
+          <h2 class="h-section mt-5">Give them a game.</h2>
+          <p class="prose-brand mt-4">Birthdays, holidays, or just because. Buy one online and send it in a minute.</p>
+          {/* TODO: owner to confirm what gift cards can be used for, then mention it here */}
+          <a href={business.links.giftCards} class="btn-primary mt-6" target="_blank" rel="noopener">Buy a gift card</a>
+        </div>
       </div>
     </div>
   </section>

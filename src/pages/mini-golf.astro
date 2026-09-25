@@ -39,6 +39,14 @@ import business from "../data/business.json";
           {/* TODO: owner to describe how the leaderboard works (weekly? monthly? prizes?) */}
         </div>
       </div>
+      <div class="mt-16 grid items-center gap-8 md:grid-cols-[1fr_1.2fr_1.2fr]">
+        <div>
+          <h2 class="h-section">Dressed for the season</h2>
+          <p class="prose-brand mt-4">The course changes with the holidays, from glowing Halloween dragons to Santa riding a train past the greens.</p>
+        </div>
+        <Photo slot="holiday-halloween" alt="Halloween inflatables, a dragon and a spooky tree, glowing on the mini golf course" sizes="(min-width: 768px) 33vw, 100vw" />
+        <Photo slot="holiday-christmas" alt="An inflatable Santa riding a train beside a mini golf hole" sizes="(min-width: 768px) 33vw, 100vw" />
+      </div>
     </div>
   </section>
 
@@ -62,7 +70,8 @@ import business from "../data/business.json";
     <div class="container-brand grid items-start gap-10 md:grid-cols-2">
       <div>
         <h2 class="h-section">Mini golf prices</h2>
-        <p class="prose-brand mt-4">One round, all 18 holes.</p>
+        <p class="prose-brand mt-4">One round, all 18 holes. Pick your ball.</p>
+        <div class="mt-8"><Photo slot="emoji-balls" alt="A box of colorful golf balls painted with emoji faces" /></div>
       </div>
       <PriceGroup id="mini-golf" showTitle={false} />
     </div>
