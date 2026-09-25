@@ -9,16 +9,17 @@ interface Props {
   color: BrandColor;
   photo: string;
   blurb: string;
+  alt: string;
   from?: string | null;
   headingLevel?: "h2" | "h3";
 }
-const { name, href, color, photo, blurb, from, headingLevel = "h3" } = Astro.props;
+const { name, href, color, photo, blurb, alt, from, headingLevel = "h3" } = Astro.props;
 const H = headingLevel;
 ---
 
 <article class="card flex h-full flex-col">
   <div class:list={["h-4 border-b-[3px] border-ink", strip[color]]} aria-hidden="true"></div>
-  <Photo slot={photo} alt={`${name} at Putt & Play`} class="!rounded-none !border-0 border-b-[3px]" aspect="aspect-[16/10]" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+  <Photo slot={photo} alt={alt} class="!rounded-none !border-0 border-b-[3px]" aspect="aspect-[16/10]" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
   <div class="flex flex-1 flex-col gap-3 border-t-[3px] border-ink p-5">
     <H class="h-card">{name}</H>
     <p class="text-base leading-relaxed">{blurb}</p>

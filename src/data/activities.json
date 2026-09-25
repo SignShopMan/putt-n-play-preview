@@ -6,7 +6,8 @@
     "color": "fairway",
     "photo": "golf-sim",
     "blurb": "3 simulators, 150,000+ courses, up to 8 players per booth.",
-    "from": "$20"
+    "from": "$20",
+    "alt": "Golfer following through on a swing in a simulator bay"
   },
   {
     "id": "mini-golf",
@@ -15,7 +16,8 @@
     "color": "green",
     "photo": "mini-golf",
     "blurb": "An 18-hole indoor course with a leaderboard. Glow putt on select days.",
-    "from": "$5.75"
+    "from": "$5.75",
+    "alt": "The indoor mini golf course with its themed obstacles"
   },
   {
     "id": "laser-tag",
@@ -24,7 +26,8 @@
     "color": "laser",
     "photo": "laser-tag",
     "blurb": "1,400+ sq ft black-light arena with team and free-for-all play.",
-    "from": "$6.99"
+    "from": "$6.99",
+    "alt": "Neon-outlined barriers glowing in the laser tag arena"
   },
   {
     "id": "vr",
@@ -33,7 +36,8 @@
     "color": "vr",
     "photo": "vr",
     "blurb": "2 wireless VR stations with 30+ titles, from flying to escape rooms.",
-    "from": "$15"
+    "from": "$15",
+    "alt": "A VR station at Putt and Play"
   },
   {
     "id": "arcade",
@@ -42,6 +46,7 @@
     "color": "arcade",
     "photo": "arcade",
     "blurb": "Soccer, bowling, dodgeball, baseball, hockey, and more on one screen.",
-    "from": null
+    "from": null,
+    "alt": "Balls and discs for the multisport simulator"
   }
 ]

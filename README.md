@@ -29,7 +29,10 @@ Any of `.jpg .jpeg .png .webp .avif` works.
 | `party` | Home parties, Parties hero |
 | `party-mini-golf`, `party-laser-tag`, `party-vr`, `party-sim` | Party package cards |
 | `league` | Leagues hero |
+| `beer-wine` | Leagues, beer and wine card |
 | `family` | Home "Our story" |
+
+Still needed: `vr`, `party-vr` (no VR photos yet). Original uploads are kept in `photos-raw/` (git-ignored).
 
 Alt text lives next to each `<Photo>` in the page — update it to describe the actual photo.
 

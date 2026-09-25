@@ -7,10 +7,10 @@ import business from "../data/business.json";
 
 const specials = pricing.groups.find((g) => g.id === "specials")!.items;
 const packages = [
-  { key: "Mini golf birthday party", color: "bg-green", photo: "party-mini-golf" },
-  { key: "Laser tag birthday party", color: "bg-laser", photo: "party-laser-tag" },
-  { key: "VR birthday party", color: "bg-vr", photo: "party-vr" },
-  { key: "Golf or multisport sim party", color: "bg-fairway", photo: "party-sim" },
+  { key: "Mini golf birthday party", color: "bg-green", photo: "party-mini-golf", alt: "Kids and parents playing the mini golf course" },
+  { key: "Laser tag birthday party", color: "bg-laser", photo: "party-laser-tag", alt: "Glowing neon barriers in the laser tag arena" },
+  { key: "VR birthday party", color: "bg-vr", photo: "party-vr", alt: "A VR station at Putt and Play" },
+  { key: "Golf or multisport sim party", color: "bg-fairway", photo: "party-sim", alt: "A golfer swinging in a simulator bay" },
 ].map((p) => ({ ...p, item: specials.find((s) => s.name === p.key)! }));
 const room = specials.find((s) => s.name === "Recreation room")!;
 const combo = specials.find((s) => s.name === "Combo packages")!;
@@ -26,7 +26,7 @@ const combo = specials.find((s) => s.name === "Combo packages")!;
     title="Birthday parties, handled."
     lede="Pick the game, and we'll handle the room, the pizza, and the soda. Groups up to 50."
     photo="party"
-    photoAlt="Birthday party guests celebrating in the Putt & Play party room"
+    photoAlt="A group of friends smiling in front of a golf simulator screen"
   >
     <Fragment slot="actions">
       <a href={business.phoneHref} class="btn-primary">Call {business.phone} to book</a>
@@ -43,7 +43,7 @@ const combo = specials.find((s) => s.name === "Combo packages")!;
           packages.map((p) => (
             <article class="card flex flex-col">
               <div class:list={["h-4 border-b-[3px] border-ink", p.color]} aria-hidden="true" />
-              <Photo slot={p.photo} alt={`${p.item.name} at Putt & Play`} class="!rounded-none !border-0" aspect="aspect-[16/10]" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" />
+              <Photo slot={p.photo} alt={p.alt} class="!rounded-none !border-0" aspect="aspect-[16/10]" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" />
               <div class="flex flex-1 flex-col gap-3 border-t-[3px] border-ink p-5">
                 <h3 class="h-card">{p.item.name.replace(" birthday party", "").replace(" party", "")}</h3>
                 <p>
