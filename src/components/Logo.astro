@@ -1,21 +1,22 @@
 ---
 import { url } from "../lib/url";
 /**
- * TODO: Replace PNG placeholders with vector exports (logo-master.svg,
- * logo-golf.svg, logo-lasertag.svg) in /public/brand/ when the designer
+ * TODO: Replace PNG placeholders (cropped from the Sept 28 artwork sheet) with
+ * vector exports (logo-master.svg, logo-golf.svg, logo-lasertag.svg, logo-vr.svg) in /public/brand/ when the designer
  * delivers them. Never recreate the logo with live text (brand guide p.2).
  */
 interface Props {
-  variant?: "master" | "golf" | "lasertag";
+  variant?: "master" | "golf" | "lasertag" | "vr";
   class?: string;
   eager?: boolean;
 }
 const { variant = "master", class: className = "", eager = false } = Astro.props;
 
 const files = {
-  master: { src: url("/brand/logo-master.png"), w: 2217, h: 569 },
-  golf: { src: url("/brand/logo-golf.png"), w: 2420, h: 649 },
-  lasertag: { src: url("/brand/logo-lasertag.png"), w: 2405, h: 679 },
+  master: { src: url("/brand/logo-master.png"), w: 1671, h: 439 },
+  golf: { src: url("/brand/logo-golf.png"), w: 1741, h: 447 },
+  lasertag: { src: url("/brand/logo-lasertag.png"), w: 1730, h: 530 },
+  vr: { src: url("/brand/logo-vr.png"), w: 1723, h: 518 },
 };
 const f = files[variant];
 ---

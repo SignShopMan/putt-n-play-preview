@@ -4,21 +4,24 @@
   /* Core */
   --color-ink: #000000;
   --color-paper: #ffffff;
-  --color-gold: #e9bb45; /* master bar, primary buttons */
-  --color-flag: #da3831; /* small accents only */
+  --color-gold: #f1b91a; /* master bar, primary buttons */
+  --color-flag: #ed1c24; /* small accents only; black text on it (white is 4.4:1) */
 
   /* Golf */
-  --color-fairway: #2b663c;
-  --color-green: #41924d;
+  --color-fairway: #006837;
+  --color-green: #009444;
 
   /* Laser tag */
-  --color-laser: #cd2e7d;
-  --color-burst: #86308b;
-  --color-beam: #845b96;
-  --color-zap: #fdf251; /* never on white */
+  --color-laser: #e00980;
+  --color-burst: #92278f;
+  --color-beam: #885898;
+  --color-zap: #fff200; /* never on white */
 
-  /* PROPOSED, not yet approved (brand guide p.6) — TODO: owner to approve VR / Arcade / League colors */
-  --color-vr: #0e7490;
+  /* VR (from the VR lockup, Sept 2026 artwork) */
+  --color-vr: #262262;
+
+  /* PROPOSED, not yet approved (brand guide) — TODO: owner to approve Arcade / League colors.
+     League Navy now sits close to VR Indigo; consider a new league color. */
   --color-arcade: #f2762e; /* use black text */
   --color-league: #1e3a5f;
 

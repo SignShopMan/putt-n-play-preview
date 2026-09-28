@@ -2,6 +2,7 @@
 import { url } from "../lib/url";
 import Base from "../layouts/Base.astro";
 import PageHero from "../components/PageHero.astro";
+import LockupPanel from "../components/LockupPanel.astro";
 import PriceGroup from "../components/PriceGroup.astro";
 import Photo from "../components/Photo.astro";
 import business from "../data/business.json";
@@ -27,10 +28,11 @@ const sports = ["Soccer", "Bowling", "Dodgeball", "Baseball", "Football", "Disc 
   </PageHero>
 
   {/* TODO: VR hero is a stock photo — replace with a real photo of the Putt & Play VR stations (brand guide p.9) */}
-  {/* NOTE: VR Cyan and Arcade Orange are PROPOSED colors, not yet approved (brand guide p.6) */}
+  {/* NOTE: Arcade Orange is a PROPOSED color, not yet approved (brand guide) */}
   <section class="section border-y-[3px] border-ink bg-vr text-paper">
     <div class="container-brand">
-      <p class="label font-bold">Virtual reality</p>
+      <LockupPanel variant="vr" />
+      <p class="label mt-14 font-bold">Virtual reality</p>
       <h2 class="h-section mt-3">2 stations. 30+ titles.</h2>
       <div class="mt-10 grid gap-6 md:grid-cols-3">
         <div class="rounded-[var(--radius-card)] border-[3px] border-ink bg-paper p-6 text-ink shadow-[var(--shadow-hard)]">

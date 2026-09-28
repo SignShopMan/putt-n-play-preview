@@ -12,7 +12,7 @@ export const surface = {
   arcade: "bg-arcade text-ink",
   league: "bg-league text-paper",
   gold: "bg-gold text-ink",
-  flag: "bg-flag text-paper",
+  flag: "bg-flag text-ink",
   paper: "bg-paper text-ink",
 } as const;
 
